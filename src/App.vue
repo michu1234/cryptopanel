@@ -1,12 +1,14 @@
 <template>
   <div id="app">
+  <nav-bar></nav-bar>
+  <short-list></short-list>
   <vue-table></vue-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
+  name: 'App',
   data () {
     return {
       msg: ''

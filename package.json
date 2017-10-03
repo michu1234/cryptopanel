@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0-alpha.6",
     "jquery": "^3.2.1",
     "vue": "^2.3.3",
     "vue2-filters": "^0.2.1"
