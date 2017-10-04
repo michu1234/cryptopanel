@@ -17,6 +17,7 @@
         </tbody>
       </table>
     </div>
+    <div id="chart"></div>
   </div>
 </template>
 
@@ -43,6 +44,26 @@
       },
       alertClass(numberData) {
          return numberData > 0 ? "text-success" : "text-danger";
+      },
+      addMainChart() {
+                 var chart = c3.generate({
+                    bindto: '#chart',
+                    size: {
+                        height: 650,
+                        width: 900
+                    },
+                    data: {
+                        columns: [
+                            ['data1', 130, 100, 140, 200, 150, 50]
+                        ],
+                        colors: {
+                            data1: '#f7931a'
+                        },
+                        types: {
+                            data1: 'area-spline'
+                        }
+                    }
+                });
       }
     },
     created() {
@@ -50,6 +71,9 @@
       // setInterval(()=>{this.getValues(); console.log('a');},5000);
       
 
+    },
+    mounted() {
+       addMainChart();
     }
   }
 </script>
