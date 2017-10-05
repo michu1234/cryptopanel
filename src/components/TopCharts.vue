@@ -7,6 +7,7 @@
             <div id="chart4"></div>
             <div id="chart5"></div>
             <div id="chart6"></div>
+            <div id="chart7"></div>
         </div>
 
     </div>
@@ -26,7 +27,7 @@
                 var chart = c3.generate({
                     size: {
                         height: 150,
-                        width: 200
+                        width: 190
                     },
                     data: {
                         columns: [
@@ -46,7 +47,7 @@
                     bindto: '#chart2',
                     size: {
                         height: 150,
-                        width: 200
+                        width: 190
                     },
                     data: {
                         columns: [
@@ -66,7 +67,7 @@
                     bindto: '#chart3',
                     size: {
                         height: 150,
-                        width: 200
+                        width: 190
                     },
                     data: {
                         columns: [
@@ -83,7 +84,7 @@
                     bindto: '#chart4',
                     size: {
                         height: 150,
-                        width: 200
+                        width: 190
                     },
                     data: {
                         columns: [
@@ -103,7 +104,7 @@
                     bindto: '#chart5',
                     size: {
                         height: 150,
-                        width: 200
+                        width: 190
                     },
                     data: {
                         columns: [
@@ -126,7 +127,7 @@
                     bindto: '#chart6',
                     size: {
                         height: 150,
-                        width: 200
+                        width: 190
                     },
                     data: {
                         columns: [
@@ -134,6 +135,29 @@
                         ],
                         colors: {
                             data1: '#f7931a'
+                        },
+                        types: {
+                            data1: 'area-spline'
+                        },
+                        point: {
+                            show: false
+                        }
+                    }
+                });
+            },
+             addchart7() {
+                var chart7 = c3.generate({
+                    bindto: '#chart7',
+                    size: {
+                        height: 150,
+                        width: 190
+                    },
+                    data: {
+                        columns: [
+                            ['data1', 130, 100, 140, 200, 150, 50]
+                        ],
+                        colors: {
+                            data1: '#f7538a'
                         },
                         types: {
                             data1: 'area-spline'
@@ -152,6 +176,7 @@
             this.addchart4();
             this.addchart5();
             this.addchart6();
+            this.addchart7();
         }
     }
 </script>

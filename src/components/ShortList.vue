@@ -2,8 +2,8 @@
   <div id="shortlist">
     <div class="container-fluid row shortlist__box">
       <div class="col-md-2">
-        <input v-model="searchPair" type="text"></input> {{displayValue}}
-        <table class="container table table-hover table-condensed table-responsive shortlist__table">
+        <input v-model="searchPair" type="text"></input> 
+        <table class="container table table-hover table-condensed table-responsive shortlist__table mt-3">
           <thead class="thead-default">
             <tr class="font-weight-bold">
               <td>Symbol</td>
