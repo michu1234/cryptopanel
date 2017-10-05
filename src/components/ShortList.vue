@@ -2,7 +2,7 @@
   <div id="shortlist">
     <div class="container-fluid row shortlist__box">
       <div class="col-md-2">
-        <input v-model="searchPair" type="text"></input> 
+        <input v-model="searchPair" type="text"></input>
         <table class="container table table-hover table-condensed table-responsive shortlist__table mt-3">
           <thead class="thead-default">
             <tr class="font-weight-bold">
@@ -13,7 +13,8 @@
           <tbody>
             <tr v-for="value in newValue">
               <td>{{value.symbol}}</td>
-              <td :class="alertClass(value.percent_change_1h)"><span v-if="value.percent_change_1h > 0">+</span>{{value.percent_change_1h}}</td>
+              <td :class="alertClass(value.percent_change_1h)">
+                <span v-if="value.percent_change_1h > 0">+</span>{{value.percent_change_1h}}</td>
             </tr>
           </tbody>
         </table>
@@ -32,7 +33,7 @@
       return {
         msg: 'Testowa informacja',
         newValue: '',
-        displayValue: '',
+        displayValue: [],
         searchPair: '',
         pairName: ''
       }
@@ -51,6 +52,7 @@
         return numberData > 0 ? "text-success" : "text-danger";
       },
       addMainChart() {
+        let newTab = this.displayValue;
         var mainChart = c3.generate({
           bindto: '#mainChart',
           size: {
@@ -59,7 +61,7 @@
           },
           data: {
             columns: [
-              ['data1', 130, 100, 140, 200, 150, 50, 44, 57, 34, 130, 100, 140, 220, 12, 44, 88, 34 ]
+              ['data1', ...newTab]
             ],
             colors: {
               data1: '#f7931a'
@@ -69,14 +71,33 @@
             }
           }
         });
+      },
+      testowa() {
+        let test = this.newValue;
+        let newTab = this.displayValue;
+         newTab.push(parseFloat(test[0].price_usd) + (Math.random()*1000)+10); //faking more movement on chart
+        // if (newTab.length < 10) {
+        //   newTab.push(parseFloat(test[0].price_usd) + (Math.random()*1000)); //faking more movement on chart
+        // } else {
+        //   newTab.push(test[0].price_usd + Math.random());
+        //   newTab.push(parseFloat(test[0].price_usd) + (Math.random()*1000))
+        //   // newTab.shift();
+        // }
+        console.log(newTab);
       }
     },
     created() {
       this.getValues();
-      setInterval(()=>{this.getValues(); console.log('a');},5000);
+      setInterval(() => {
+        this.getValues();
+        console.log('refreshed');
+      }, 4000);
+      setInterval(() => {
+        this.testowa()
+      }, 1000);
     },
     mounted() {
-      this.addMainChart();
+      setInterval(()=>{this.addMainChart();},1000);
     }
   }
 </script>
