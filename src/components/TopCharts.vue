@@ -1,11 +1,12 @@
 <template>
-    <div id="app">
-        <div class="row col-md-12 container mb-5">
+    <div id="topcharts">
+        <div class="row container-fluid mb-5">
             <div id="chart"></div>
             <div id="chart2"></div>
             <div id="chart3"></div>
             <div id="chart4"></div>
             <div id="chart5"></div>
+            <div id="chart6"></div>
         </div>
 
     </div>
@@ -119,6 +120,29 @@
                         }
                     }
                 });
+            },
+            addchart6() {
+                var chart6 = c3.generate({
+                    bindto: '#chart6',
+                    size: {
+                        height: 150,
+                        width: 200
+                    },
+                    data: {
+                        columns: [
+                            ['data1', 130, 100, 140, 200, 150, 50]
+                        ],
+                        colors: {
+                            data1: '#f7931a'
+                        },
+                        types: {
+                            data1: 'area-spline'
+                        },
+                        point: {
+                            show: false
+                        }
+                    }
+                });
             }
         },
         mounted() {
@@ -127,6 +151,7 @@
             this.addchart3();
             this.addchart4();
             this.addchart5();
+            this.addchart6();
         }
     }
 </script>

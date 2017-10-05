@@ -1,23 +1,27 @@
 <template>
-  <div id="app">
-    <div class="col-md-2">
-     <input v-model="searchPair" type="text"></input> {{pairName}}
-      <table class="container table table-hover table-condensed table-responsive">
-        <thead class="thead-default">
-          <tr class="font-weight-bold">
-            <td>Symbol</td>
-            <td>1H</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="value in newValue">
-            <td>{{value.symbol}}</td>
-            <td :class="alertClass(value.percent_change_1h)"><span v-if="value.percent_change_1h > 0">+</span>{{value.percent_change_1h}}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div id="shortlist">
+    <div class="container-fluid row shortlist__box">
+      <div class="col-md-2">
+        <input v-model="searchPair" type="text"></input> {{displayValue}}
+        <table class="container table table-hover table-condensed table-responsive shortlist__table">
+          <thead class="thead-default">
+            <tr class="font-weight-bold">
+              <td>Symbol</td>
+              <td>1H</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="value in newValue">
+              <td>{{value.symbol}}</td>
+              <td :class="alertClass(value.percent_change_1h)"><span v-if="value.percent_change_1h > 0">+</span>{{value.percent_change_1h}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-9">
+        <div id="mainChart"></div>
+      </div>
     </div>
-    <div id="chart"></div>
   </div>
 </template>
 
@@ -28,6 +32,7 @@
       return {
         msg: 'Testowa informacja',
         newValue: '',
+        displayValue: '',
         searchPair: '',
         pairName: ''
       }
@@ -43,37 +48,35 @@
           });
       },
       alertClass(numberData) {
-         return numberData > 0 ? "text-success" : "text-danger";
+        return numberData > 0 ? "text-success" : "text-danger";
       },
       addMainChart() {
-                 var chart = c3.generate({
-                    bindto: '#chart',
-                    size: {
-                        height: 650,
-                        width: 900
-                    },
-                    data: {
-                        columns: [
-                            ['data1', 130, 100, 140, 200, 150, 50]
-                        ],
-                        colors: {
-                            data1: '#f7931a'
-                        },
-                        types: {
-                            data1: 'area-spline'
-                        }
-                    }
-                });
+        var mainChart = c3.generate({
+          bindto: '#mainChart',
+          size: {
+            height: 550,
+            width: 1100
+          },
+          data: {
+            columns: [
+              ['data1', 130, 100, 140, 200, 150, 50, 44, 57, 34, 130, 100, 140, 220, 12, 44, 88, 34 ]
+            ],
+            colors: {
+              data1: '#f7931a'
+            },
+            types: {
+              data1: 'area-spline'
+            }
+          }
+        });
       }
     },
     created() {
       this.getValues();
-      // setInterval(()=>{this.getValues(); console.log('a');},5000);
-      
-
+      setInterval(()=>{this.getValues(); console.log('a');},5000);
     },
     mounted() {
-       addMainChart();
+      this.addMainChart();
     }
   }
 </script>
@@ -81,5 +84,15 @@
 <style lang="scss">
   h2 {
     margin: 50px;
+  }
+
+  .shortlist__box {
+    max-height: 600px;
+    overflow: hidden;
+  }
+
+  .shortlist__table {
+    overflow-y: scroll;
+    max-height: 500px;
   }
 </style>

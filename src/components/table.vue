@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="table">
     <div class="container-fluid">
       <h2 class="m-500 text-center">Check Cryptocurrency Price</h2>
       <h4 class="ml-4 mb-4 text-warning">Latest news:</h4>
@@ -86,7 +86,6 @@
       axios.get('https://newsapi.org/v1/articles?source=bloomberg&sortBy=top&apiKey=08952dd3e4054fed896dc4e18ebdd80d')
         .then((response) => {
           this.newsData = response.data.articles;
-          console.log(this.newsData);
           console.log(response.data.articles[2].urlToImage);
         })
         .catch(function (error) {

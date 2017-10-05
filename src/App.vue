@@ -1,7 +1,9 @@
 <template>
   <div id="app">
   <nav-bar></nav-bar>
-   <top-charts></top-charts>
+  <div></div>
+  <top-charts></top-charts>
+    <div></div>
   <short-list></short-list>
   <vue-table></vue-table>
   </div>

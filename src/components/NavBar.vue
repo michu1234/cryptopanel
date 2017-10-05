@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="navbar">
 
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <a class="navbar-brand" href="#">
