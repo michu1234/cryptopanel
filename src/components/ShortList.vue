@@ -20,6 +20,11 @@
         </table>
       </div>
       <div class="col-md-9">
+      <button @click="charType = 'bar'">Bar</button>
+      <button @click="charType = 'scatter'">Scatter</button>
+      <button @click="charType = 'step'">Step</button>
+      <button @click="charType = 'area'">Area</button>
+      <button @click="charType = 'area-spline'">Area Spline</button>
         <div id="mainChart"></div>
       </div>
     </div>
@@ -35,7 +40,8 @@
         newValue: '',
         displayValue: [],
         searchPair: '',
-        pairName: ''
+        pairName: '',
+        charType: 'area-spline'
       }
     },
     methods: {
@@ -53,6 +59,7 @@
       },
       addMainChart() {
         let newTab = this.displayValue;
+        let changeType = this.charType;
         var mainChart = c3.generate({
           bindto: '#mainChart',
           size: {
@@ -61,15 +68,26 @@
           },
           data: {
             columns: [
-              ['data1', ...newTab]
+              ['Bitcoin', ...newTab]
             ],
             colors: {
-              data1: '#f7931a'
+              Bitcoin: '#f1431a'
             },
             types: {
-              data1: 'area-spline'
+              Bitcoin: changeType
             }
-          }
+          },
+    axis: {
+        x: {
+            label: 'Seconds'
+        },
+        y: {
+            label: 'Price in USD'
+        }
+    },
+    zoom: {
+        enabled: true
+    }
         });
       },
       testowa() {
